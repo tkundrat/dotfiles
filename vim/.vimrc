@@ -118,6 +118,7 @@ let g:airline_mode_map = {
     \ 'v'      : '',
     \ 'V'      : ' ',
     \ ''     : ' 麗',
+    \ 'c'      : ''
     \ }
 
 " Keymappings
