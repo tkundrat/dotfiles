@@ -4,7 +4,7 @@
 OLD_DOTS_DIR=$HOME/old-dotfiles
 if [[ $(ls $HOME/.bashrc) ]]; then
     ls $OLD_DOTS_DIR || mkdir $OLD_DOTS_DIR
-    cp $HOME/.bashrc $OLD_DOTS_DIR
+    mv $HOME/.bashrc $OLD_DOTS_DIR/.bashrc
 fi
 
 # creating symlink
