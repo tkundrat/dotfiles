@@ -17,10 +17,12 @@ set noshowmode
 set noshowcmd
 set encoding=utf-8
 set backspace=indent,eol,start
-set wildmenu
+set wildmenu "autocomplete :e
 set scrolloff=5
 set undolevels=1337
-set mouse=a
+set mouse=a "a: active/c: inactive
+set confirm "save necessary for quit
+set noswapfile
 
 "search
 set ignorecase "case ignore
