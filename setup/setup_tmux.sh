@@ -13,5 +13,5 @@ fi
 
 # creating symlink
 REPO_DIR=$(cd .. && pwd)
-ln -s $REPO_DIR/shell/.tmux.conf $HOME/.tmux.conf
-ln -s $REPO_DIR/shell/.tmux.theme $HOME/.tmux.theme
+ln -s $REPO_DIR/tmux/.tmux.conf $HOME/.tmux.conf
+ln -s $REPO_DIR/tmux/.tmux.theme $HOME/.tmux.theme
