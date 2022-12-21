@@ -5,4 +5,4 @@ if [ ! -S "$LINK" ] && [ -S "$SSH_AUTH_SOCK" ]; then
     ln -sf $SSH_AUTH_SOCK "$LINK"
 fi
 
-source .bash-powerline.sh
+source ~/.bash-powerline.sh
