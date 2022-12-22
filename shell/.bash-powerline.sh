@@ -106,10 +106,10 @@ __powerline() {
         # Related fix in git-bash: https://github.com/git/git/blob/9d77b0405ce6b471cb5ce3a904368fc25e55643d/contrib/completion/git-prompt.sh#L324
         if shopt -q promptvars; then
             __powerline_git_info="$(__git_info)"
-            local git="$cwd_git_sep$COLOR_GIT\${__powerline_git_info}$COLOR_RESET$git_symbol_sep"
+            local git="$cwd_git_sep$COLOR_GIT\${__powerline_git_info} $COLOR_RESET$git_symbol_sep"
         else
             # promptvars is disabled. Avoid creating unnecessary env var.
-            local git="$cwd_git_sep$COLOR_GIT$(__git_info)$COLOR_RESET$git_symbol_sep"
+            local git="$cwd_git_sep$COLOR_GIT$(__git_info) $COLOR_RESET$git_symbol_sep"
         fi
 
         local powerline_git_info="$(__git_info)"
