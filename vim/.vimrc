@@ -1,8 +1,8 @@
-" vim-plug auto-install (thanks to mthomas!)
+" vim-plug auto-install (thanks to marcothms!)
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
 endif
 
 " general settings
@@ -23,6 +23,7 @@ set undolevels=1337
 set mouse=a "a: active/c: inactive
 set confirm "save necessary for quit
 set noswapfile
+set ttimeoutlen=5 "make esc snappy
 
 "search
 set ignorecase "case ignore
@@ -56,16 +57,17 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\v\s+$| +\ze\t|\S\zs\t+ +|^\s*( {32})+/
 
 call plug#begin('~/.vim/plugged')
-  Plug 'pangloss/vim-javascript'
-  Plug 'maxmellon/vim-jsx-pretty'
-"  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'ericbn/vim-solarized'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'sainnhe/everforest'
-  Plug 'tpope/vim-fugitive'
-  Plug 'edkolev/tmuxline.vim'
+    Plug 'pangloss/vim-javascript'
+    Plug 'maxmellon/vim-jsx-pretty'
+    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'ericbn/vim-solarized'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'sainnhe/everforest'
+    Plug 'tpope/vim-fugitive'
+    Plug 'edkolev/tmuxline.vim'
+    Plug 'dmerejkowsky/vim-ale'
 call plug#end()
 
 "color theme
@@ -76,37 +78,80 @@ let g:everforest_enable_italic = 1
 "let g:everforest_transparent_background = 1
 let g:everforest_better_performance = 1
 let g:everforest_background = 'hard'
+let g:darkmode=0
+if empty(glob('~/.darkmode'))
+    set background=light
+else
+    set background=dark
+    let g:darkmode=1
+endif
 "hi Normal guibg=NONE ctermbg=NONE
 colorscheme everforest
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" make undercurl work
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
 
-" vim-airline
-let g:airline_theme="everforest"
+
+"" vim-airline settings
+let g:airline_theme='everforest'
+" tabline
 let g:airline#extensions#tabline#enabled = 1 "enables the list of buffers
-let g:airline#extensions#tabline#formatter = "unique_tail_improved"
-let g:airline#extensions#branch#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_buffers = 0
+" airline-git
+let g:airline#extensions#branch#enabled = 1
+" airline-whitespace
+let g:airline#extensions#whitespace#enabled = 1
+" airline-ale
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#show_line_numbers = 1
 
-" airline symbols
+" ale
+let g:ale_sign_priority=30
+let g:ale_echo_msg_format = ' %severity%  %linter%  %s'
+let g:ale_set_highlights=1
+highlight ALEError gui=undercurl guifg=NONE guibg=NONE ctermbg=NONE cterm=undercurl ctermul=red term=underline
+highlight ALEWarning gui=undercurl guifg=NONE guibg=NONE ctermbg=NONE cterm=undercurl ctermul=yellow term=underline
+if empty(glob('~/.darkmode'))
+    highlight ALEErrorLine guibg='white'
+    highlight ALEWarningLine guibg='white'
+else
+    highlight ALEErrorLine guibg='black'
+    highlight ALEWarningLine guibg='black'
+endif
+
+" git
+let g:gitgutter_sign_priority=9
+
+"" airline symbols
+let g:airline_powerline_fonts = 1
 let g:airline_symbols = {}
+let g:airline_symbols.colnr = ':'
+let g:airline_symbols.linenr = '  :'
+let g:airline_symbols.maxlinenr = ' '
+" airline-seperators
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ' '
+" tabline
 let g:airline#extensions#tabline#close_symbol = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.colnr = ':'
-let g:airline_symbols.linenr = '  :'
-let g:airline_symbols.maxlinenr = ' '
-let g:airline_symbols.notexists = '  '
-let g:airline_symbols.dirty = ' '
 let g:airline#extensions#tabline#tabs_label = '裡'
 let g:airline#extensions#tabline#buffers_label = '﬘'
+let g:airline#extensions#tabline#overflow_marker = ' ••• '
+" airline-git
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.notexists = '  '
+let g:airline_symbols.dirty = ' '
+" airline-modes
 let g:airline_mode_map = {
     \ 'i'      : '',
     \ 'ic'     : '',
@@ -122,6 +167,45 @@ let g:airline_mode_map = {
     \ ''     : ' 麗',
     \ 'c'      : ''
     \ }
+" airline-whitespace
+let g:airline#extensions#whitespace#symbol = ' '
+" airline-ale (async lint engine)
+let g:airline#extensions#ale#error_symbol = ' '
+let g:airline#extensions#ale#warning_symbol = ' '
+let g:airline#extensions#ale#open_lnum_symbol = ':  '
+let g:airline#extensions#ale#close_lnum_symbol = ''
+
+" symbols
+" ale
+let g:ale_sign_error = ' '
+let g:ale_sign_warning = ' '
+let g:ale_echo_msg_error_str = ' '
+let g:ale_echo_msg_warning_str = ' '
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+
+" Functions
+function! SetDarkTheme()
+    execute 'set background=dark'
+    execute 'AirlineTheme everforest'
+    let g:darkmode=1
+endfunction
+function! SetLightTheme()
+    execute 'set background=light'
+    execute 'AirlineTheme everforest'
+    let g:darkmode=0
+endfunction
+function! ToggleDarkLight()
+    if g:darkmode==1
+        call SetLightTheme()
+    else
+        call SetDarkTheme()
+    endif
+endfunction
 
 " Keymappings
 map <C-t> :tabnew .<CR>
+
+" Custom commands
+command SetDark :call SetDarkTheme()
+command SetLight :call SetLightTheme()
+command ToggleDark :call ToggleDarkLight()

@@ -14,11 +14,11 @@ __powerline() {
     COLOR_CWD_GIT_SEP=${COLOR_CWD_GIT_SEP:-'\[\033[0;40;32m\]'} # black bg, green fg
     COLOR_GIT_SYMBOL_SUCCESS_SEP=${COLOR_GIT_SYMBOL_SUCCESS_SEP:-'\[\033[0;42;30m\]'} # green bg, black fg
     COLOR_GIT_SYMBOL_FAILURE_SEP=${COLOR_GIT_SYMBOL_FAILURE_SEP:-'\[\033[0;41;30m\]'} # red bg, black fg
-    COLOR_SYMBOL_SUCCESS_END_SEP=${COLOR_SYMBOL_SUCCESS_END_SEP:-'\[\033[0;47;32m\]'} # grey bg, green fg
-    COLOR_SYMBOL_FAILURE_END_SEP=${COLOR_SYMBOL_FAILURE_END_SEP:-'\[\033[0;47;31m\]'} # grey bg, red fg
+    COLOR_SYMBOL_SUCCESS_END_SEP=${COLOR_SYMBOL_SUCCESS_END_SEP:-'\[\033[0;32m\]'} # green fg
+    COLOR_SYMBOL_FAILURE_END_SEP=${COLOR_SYMBOL_FAILURE_END_SEP:-'\[\033[0;31m\]'} # red fg
     COLOR_CWD_SYMBOL_SUCCESS_SEP=${COLOR_CWD_SYMBOL_SUCCESS_SEP:-'\[\033[0;42;32m\]'} # green bg, green fg
     COLOR_CWD_SYMBOL_FAILURE_SEP=${COLOR_CWD_SYMBOL_FAILURE_SEP:-'\[\033[0;41;32m\]'} # red bg, green fg
-    COLOR_END=${COLOR_END:-'\[\033[0;37m\]'} # grey fg
+    COLOR_END=${COLOR_END:-'\[\033[m\]'}
 
     # Symbols
     SYMBOL_GIT_BRANCH=${SYMBOL_GIT_BRANCH:- }
@@ -42,7 +42,7 @@ __powerline() {
         PS_ERR_SYMBOL=' '
     fi
 
-    __git_info() { 
+    __git_info() {
         [[ $POWERLINE_GIT = 0 ]] && return # disabled
         hash git 2>/dev/null || return # git not found
         local git_eng="env LANG=C git"   # force git output in English to make our work easier
@@ -79,7 +79,7 @@ __powerline() {
 
     ps1() {
         # Check the exit code of the previous command and display different
-        # colors in the prompt accordingly. 
+        # colors in the prompt accordingly.
         if [ $? -eq 0 ]; then
             local symbol="$COLOR_SYMBOL_SUCCESS_END_SEP$PS_SYMBOL$COLOR_RESET"
             local cwd_symbol_sep="$COLOR_CWD_SYMBOL_SUCCESS_SEP$SYMBOL_SEP$COLOR_RESET"
@@ -98,7 +98,7 @@ __powerline() {
             local cwd="$COLOR_CWD \w $COLOR_RESET"
         fi
         local cwd_git_sep="$COLOR_CWD_GIT_SEP$SYMBOL_SEP$COLOR_RESET"
-        local symbol_end_sep="$COLOR_END$SYMBOL_SEP$COLOR_RESET"
+        local symbol_end_sep="$COLOR_END $COLOR_RESET"
         # Bash by default expands the content of PS1 unless promptvars is disabled.
         # We must use another layer of reference to prevent expanding any user
         # provided strings, which would cause security issues.
