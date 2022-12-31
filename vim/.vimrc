@@ -92,7 +92,9 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " make undercurl work
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
-
+" make italics work
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
 
 "" vim-airline settings
 let g:airline_theme='everforest'
@@ -141,6 +143,12 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = ' '
+" kitty specifics
+let terminal_type = $TERM
+if terminal_type==?'xterm-kitty'
+    let g:airline#extensions#tabline#left_sep = ''
+    let g:airline#extensions#tabline#left_alt_sep = ''
+endif
 " tabline
 let g:airline#extensions#tabline#close_symbol = ''
 let g:airline#extensions#tabline#tabs_label = '裡'
