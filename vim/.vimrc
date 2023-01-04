@@ -67,9 +67,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'sainnhe/everforest'
     Plug 'tpope/vim-fugitive'
     Plug 'edkolev/tmuxline.vim'
-    if strlen(system('which pip')) > 0
-        Plug 'dmerejkowsky/vim-ale'
-    endif
+    Plug 'dense-analysis/ale'
     if strlen(system('which kitty')) > 0
         Plug 'fladson/vim-kitty'
     endif
