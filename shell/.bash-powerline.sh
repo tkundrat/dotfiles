@@ -9,8 +9,13 @@ __powerline() {
     COLOR_CWD=${COLOR_CWD:-'\[\033[1;42;37m\]'} # bold, green bg, grey fg
     COLOR_GIT=${COLOR_GIT:-'\[\033[0;40;37m\]'} # black bg, grey fg
     COLOR_FAILURE=${COLOR_FAILURE:-'\[\033[1;41;37m\]'} # bold, red bg, grey fg
-    COLOR_HOST=${COLOR_HOST:-'\[\033[0;43;37m\]'} # orange bg, grey fg
-    COLOR_HOST_CWD_SEP=${COLOR_HOST_CWD_SEP:-'\[\033[0;42;33m\]'} # green bg, orange fg
+    COLOR_USER=${COLOR_USER:-'\[\033[0;46;37m\]'} # cyan bg, grey fg
+    COLOR_ROOT=${COLOR_ROOT:-'\[\033[1;43;37m\]'} # bold, orange bg, grey fg
+    COLOR_HOST=${COLOR_HOST:-'\[\033[0;44;37m\]'} # blue bg, grey fg
+    COLOR_HOST_USER_SEP=${COLOR_HOST_USER_SEP:-'\[\033[0;46;34m\]'} # cyan bg, blue fg
+    COLOR_USER_CWD_SEP=${COLOR_USER_CWD_SEP:-'\[\033[0;42;36m\]'} # green bg, cyan fg
+    COLOR_HOST_ROOT_SEP=${COLOR_HOST_ROOT_SEP:-'\[\033[0;43;34m\]'} # orange bg, blue fg
+    COLOR_ROOT_CWD_SEP=${COLOR_ROOT_CWD_SEP:-'\[\033[0;42;33m\]'} # green bg, orange fg
     COLOR_CWD_GIT_SEP=${COLOR_CWD_GIT_SEP:-'\[\033[0;40;32m\]'} # black bg, green fg
     COLOR_GIT_SYMBOL_SUCCESS_SEP=${COLOR_GIT_SYMBOL_SUCCESS_SEP:-'\[\033[0;42;30m\]'} # green bg, black fg
     COLOR_GIT_SYMBOL_FAILURE_SEP=${COLOR_GIT_SYMBOL_FAILURE_SEP:-'\[\033[0;41;30m\]'} # red bg, black fg
@@ -25,8 +30,8 @@ __powerline() {
     SYMBOL_GIT_MODIFIED=${SYMBOL_GIT_MODIFIED:-  }
     SYMBOL_GIT_PUSH=${SYMBOL_GIT_PUSH:- }
     SYMBOL_GIT_PULL=${SYMBOL_GIT_PULL:- }
-    SYMBOL_SEP=${SYMBOL_SEP:-}
-    SYMBOL_SEP_ALT=${SYMBOL_SEP_ALT:-}
+    SYMBOL_SEP=${SYMBOL_SEP:-}
+    SYMBOL_SEP_ALT=${SYMBOL_SEP_ALT:-}
 
     if [[ -z "$OS_SYMBOL" ]]; then
       case "$(uname)" in
@@ -36,7 +41,7 @@ __powerline() {
       esac
     fi
     if [[ -z "$PS_SYMBOL" ]]; then
-        PS_SYMBOL=$SYMBOL_SEP
+        PS_SYMBOL=$SYMBOL_SEP_ALT
     fi
     if [[ -z "$PS_ERR_SYMBOL" ]]; then
         PS_ERR_SYMBOL=' '
@@ -91,11 +96,19 @@ __powerline() {
         fi
 
         local host="$COLOR_HOST $OS_SYMBOL $HOSTNAME $COLOR_RESET"
-        local host_cwd_sep="$COLOR_HOST_CWD_SEP$SYMBOL_SEP $COLOR_RESET"
+        local host_user_sep="$COLOR_HOST_USER_SEP$SYMBOL_SEP $COLOR_RESET"
+        local user_cwd_sep="$COLOR_USER_CWD_SEP$SYMBOL_SEP $COLOR_RESET"
+        local host_root_sep="$COLOR_HOST_ROOT_SEP$SYMBOL_SEP $COLOR_RESET"
+        local root_cwd_sep="$COLOR_ROOT_CWD_SEP$SYMBOL_SEP $COLOR_RESET"
         if [ $PWD == $(realpath ~) ]; then
             local cwd="$COLOR_CWD \w $COLOR_RESET"
         else
             local cwd="$COLOR_CWD \w $COLOR_RESET"
+        fi
+        if [ $USER == "root" ]; then
+            local user="$host_root_sep$COLOR_ROOT $USER $COLOR_RESET$root_cwd_sep"
+        else
+            local user="$host_user_sep$COLOR_USER $USER $COLOR_RESET$user_cwd_sep"
         fi
         local cwd_git_sep="$COLOR_CWD_GIT_SEP$SYMBOL_SEP$COLOR_RESET"
         local symbol_end_sep="$COLOR_END $COLOR_RESET"
@@ -118,7 +131,7 @@ __powerline() {
             local git="$cwd_symbol_sep"
         fi
 
-        PS1="$host$host_cwd_sep$cwd$git$symbol$symbol_end_sep"
+        PS1="$host$user$cwd$git$symbol$symbol_end_sep"
     }
 
     PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
