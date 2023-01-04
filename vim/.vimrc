@@ -67,13 +67,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'sainnhe/everforest'
     Plug 'tpope/vim-fugitive'
     Plug 'edkolev/tmuxline.vim'
-    if system('which pip')
+    if strlen(system('which pip')) > 0
         Plug 'dmerejkowsky/vim-ale'
     endif
-    if system('which kitty')
+    if strlen(system('which kitty')) > 0
         Plug 'fladson/vim-kitty'
     endif
-    if system('which caddy')
+    if strlen(system('which caddy')) > 0
         Plug 'isobit/vim-caddyfile'
     endif
 call plug#end()
