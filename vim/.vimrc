@@ -67,7 +67,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'sainnhe/everforest'
     Plug 'tpope/vim-fugitive'
     Plug 'edkolev/tmuxline.vim'
-    Plug 'dmerejkowsky/vim-ale'
+    if system('which pip')
+        Plug 'dmerejkowsky/vim-ale'
+    endif
+    if system('which kitty')
+        Plug 'fladson/vim-kitty'
+    endif
+    if system('which caddy')
+        Plug 'isobit/vim-caddyfile'
+    endif
 call plug#end()
 
 "color theme
