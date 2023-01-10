@@ -74,6 +74,7 @@ call plug#begin('~/.vim/plugged')
     if strlen(system('which caddy')) > 0
         Plug 'isobit/vim-caddyfile'
     endif
+    Plug 'lepture/vim-jinja'
 call plug#end()
 
 "color theme
