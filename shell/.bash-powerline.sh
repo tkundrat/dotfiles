@@ -33,12 +33,20 @@ __powerline() {
     SYMBOL_SEP=${SYMBOL_SEP:-}
     SYMBOL_SEP_ALT=${SYMBOL_SEP_ALT:-}
 
-    if [[ -z "$OS_SYMBOL" ]]; then
-      case "$(uname)" in
-          OpenBSD)   OS_SYMBOL=' ';;
-          Linux)    OS_SYMBOL='';;
-          *)        OS_SYMBOL='';;
-      esac
+    case "$(uname)" in
+        OpenBSD)   OS_SYMBOL=' ';;
+        Linux)    OS_SYMBOL='';;
+        *)        OS_SYMBOL='';;
+    esac
+    if [[ "$(which neofetch)" ]]; then
+        local distro="$(neofetch distro --distro_shorthand on)"
+        if [[ "$distro" == *"Manjaro"* ]]; then
+            OS_SYMBOL=''
+        elif [[ "$distro" == *"Raspbian"* ]]; then
+            OS_SYMBOL=''
+        elif [[ "$distro" == *"Ubuntu"* ]]; then
+            OS_SYMBOL=''
+        fi
     fi
     if [[ -z "$PS_SYMBOL" ]]; then
         PS_SYMBOL=$SYMBOL_SEP_ALT
