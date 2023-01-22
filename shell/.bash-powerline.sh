@@ -46,6 +46,8 @@ __powerline() {
             OS_SYMBOL=''
         elif [[ "$distro" == *"Ubuntu"* ]]; then
             OS_SYMBOL=''
+        elif [[ "$distro" == *"Arch"* ]]; then
+            OS_SYMBOL=''
         fi
     fi
     if [[ -z "$PS_SYMBOL" ]]; then
