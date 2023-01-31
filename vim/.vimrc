@@ -119,6 +119,8 @@ let g:airline#extensions#whitespace#enabled = 1
 " airline-ale
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#ale#show_line_numbers = 1
+" airline-tmuxline
+let g:airline#extensions#tmuxline#enabled = 0
 
 " ale
 let g:ale_sign_priority=30
@@ -137,25 +139,31 @@ endif
 " git
 let g:gitgutter_sign_priority=9
 
+"" tmuxline
+let g:tmuxline_powerline_seperators = 1
+" symbols
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt' : '',
+    \ 'right' : '',
+    \ 'right_alt' : '',
+    \ 'space' : ' '}
+
 "" airline symbols
 let g:airline_powerline_fonts = 1
 let g:airline_symbols = {}
 let g:airline_symbols.colnr = ':'
 let g:airline_symbols.linenr = '  :'
 let g:airline_symbols.maxlinenr = ' '
-" airline-seperators
+" airline-separators
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = ' '
-" kitty specifics
-let terminal_type = $TERM
-if terminal_type==?'xterm-kitty'
-    let g:airline#extensions#tabline#left_sep = ''
-    let g:airline#extensions#tabline#left_alt_sep = ''
-endif
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
 " tabline
 let g:airline#extensions#tabline#close_symbol = ''
 let g:airline#extensions#tabline#tabs_label = '裡'
