@@ -38,7 +38,7 @@ __powerline() {
         Linux)    OS_SYMBOL='';;
         *)        OS_SYMBOL='';;
     esac
-    if [[ "$(which neofetch)" ]]; then
+    if [[ "$(which neofetch 2> /dev/null)" ]]; then
         local distro="$(neofetch distro --distro_shorthand on)"
         if [[ "$distro" == *"Manjaro"* ]]; then
             OS_SYMBOL=''
@@ -97,7 +97,7 @@ __powerline() {
     ps1() {
         # Check the exit code of the previous command and display different
         # colors in the prompt accordingly.
-        if [ $? -eq 0 ]; then
+        if [[ $? -eq 0 ]]; then
             local symbol="$COLOR_SYMBOL_SUCCESS_END_SEP$PS_SYMBOL$COLOR_RESET"
             local cwd_symbol_sep="$COLOR_CWD_SYMBOL_SUCCESS_SEP$SYMBOL_SEP$COLOR_RESET"
             local git_symbol_sep="$COLOR_GIT_SYMBOL_SUCCESS_SEP$SYMBOL_SEP$COLOR_RESET"
@@ -112,12 +112,12 @@ __powerline() {
         local user_cwd_sep="$COLOR_USER_CWD_SEP$SYMBOL_SEP $COLOR_RESET"
         local host_root_sep="$COLOR_HOST_ROOT_SEP$SYMBOL_SEP $COLOR_RESET"
         local root_cwd_sep="$COLOR_ROOT_CWD_SEP$SYMBOL_SEP $COLOR_RESET"
-        if [ $PWD == $(realpath ~) ]; then
+        if [[ $(which realpath 2> /dev/null) && $PWD == $(realpath ~) ]]; then
             local cwd="$COLOR_CWD \w $COLOR_RESET"
         else
             local cwd="$COLOR_CWD \w $COLOR_RESET"
         fi
-        if [ $USER == "root" ]; then
+        if [[ $USER == "root" ]]; then
             local user="$host_root_sep$COLOR_ROOT $USER $COLOR_RESET$root_cwd_sep"
         else
             local user="$host_user_sep$COLOR_USER $USER $COLOR_RESET$user_cwd_sep"
@@ -139,7 +139,7 @@ __powerline() {
 
         local powerline_git_info="$(__git_info)"
         local git_length=${#powerline_git_info}
-        if [ "$git_length" -lt 1 ]; then
+        if [[ "$git_length" -lt 1 ]]; then
             local git="$cwd_symbol_sep"
         fi
 
