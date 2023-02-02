@@ -75,6 +75,9 @@ call plug#begin('~/.vim/plugged')
         Plug 'isobit/vim-caddyfile'
     endif
     Plug 'lepture/vim-jinja'
+    if strlen(system('which ruby')) > 0
+        Plug 'tpope/vim-rails'
+    endif
 call plug#end()
 
 "color theme
