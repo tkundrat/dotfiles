@@ -33,9 +33,9 @@ __powerline() {
     SYMBOL_SEP_2=${SYMBOL_SEP_2:-}
 
     case "$(uname)" in
-        OpenBSD)   OS_SYMBOL=' ';;
+        OpenBSD)   OS_SYMBOL='';;
         Linux)    OS_SYMBOL='';;
-        *)        OS_SYMBOL='';;
+        *)        OS_SYMBOL='󰇄';;
     esac
     if [[ "$(which neofetch 2> /dev/null)" ]]; then
         local distro="$(neofetch distro --distro_shorthand on)"
