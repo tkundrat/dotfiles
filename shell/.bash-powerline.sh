@@ -21,7 +21,6 @@ __powerline() {
     COLOR_GIT_SYMBOL_FAILURE_SEP=${COLOR_GIT_SYMBOL_FAILURE_SEP:-'\[\033[0;41;30m\]'} # red bg, black fg
     COLOR_SYMBOL_SUCCESS_END_SEP=${COLOR_SYMBOL_SUCCESS_END_SEP:-'\[\033[0;32m\]'} # green fg
     COLOR_SYMBOL_FAILURE_END_SEP=${COLOR_SYMBOL_FAILURE_END_SEP:-'\[\033[0;31m\]'} # red fg
-    COLOR_CWD_SYMBOL_SUCCESS_SEP=${COLOR_CWD_SYMBOL_SUCCESS_SEP:-'\[\033[0;42;32m\]'} # green bg, green fg
     COLOR_CWD_SYMBOL_FAILURE_SEP=${COLOR_CWD_SYMBOL_FAILURE_SEP:-'\[\033[0;41;32m\]'} # red bg, green fg
     COLOR_END=${COLOR_END:-'\[\033[m\]'}
 
@@ -31,7 +30,7 @@ __powerline() {
     SYMBOL_GIT_PUSH=${SYMBOL_GIT_PUSH:- }
     SYMBOL_GIT_PULL=${SYMBOL_GIT_PULL:- }
     SYMBOL_SEP=${SYMBOL_SEP:-}
-    SYMBOL_SEP_ALT=${SYMBOL_SEP_ALT:-}
+    SYMBOL_SEP_2=${SYMBOL_SEP_2:-}
 
     case "$(uname)" in
         OpenBSD)   OS_SYMBOL=' ';;
@@ -53,7 +52,7 @@ __powerline() {
         fi
     fi
     if [[ -z "$PS_SYMBOL" ]]; then
-        PS_SYMBOL=$SYMBOL_SEP_ALT
+        PS_SYMBOL=$SYMBOL_SEP_2
     fi
     if [[ -z "$PS_ERR_SYMBOL" ]]; then
         PS_ERR_SYMBOL=' '
@@ -99,7 +98,7 @@ __powerline() {
         # colors in the prompt accordingly.
         if [[ $? -eq 0 ]]; then
             local symbol="$COLOR_SYMBOL_SUCCESS_END_SEP$PS_SYMBOL$COLOR_RESET"
-            local cwd_symbol_sep="$COLOR_CWD_SYMBOL_SUCCESS_SEP$SYMBOL_SEP$COLOR_RESET"
+            local cwd_symbol_sep=""
             local git_symbol_sep="$COLOR_GIT_SYMBOL_SUCCESS_SEP$SYMBOL_SEP$COLOR_RESET"
         else
             local symbol="$COLOR_FAILURE$PS_ERR_SYMBOL $? $COLOR_SYMBOL_FAILURE_END_SEP$PS_SYMBOL$COLOR_RESET"
