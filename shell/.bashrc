@@ -11,4 +11,4 @@ source ~/.bash-powerline.sh
 trap '__bash_cmd="|>$BASH_COMMAND"; if [[ $__bash_cmd == "|>ps1" ]]; then __bash_cmd=""; fi; echo -ne "\033]0;$USER@$HOSTNAME$__bash_cmd\007"; unset __bash_cmd' DEBUG
 
 # aliases
-alias ll="ls -lav"
+alias ll="ls -laF"
