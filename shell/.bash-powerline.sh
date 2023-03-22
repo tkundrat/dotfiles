@@ -145,7 +145,8 @@ __powerline() {
         PS1="$host$user$cwd$git$symbol$symbol_end_sep"
     }
 
-    PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+    #PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+    PROMPT_COMMAND="ps1"
 }
 
 __powerline
