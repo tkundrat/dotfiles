@@ -111,14 +111,8 @@ __powerline() {
         local user_cwd_sep="$COLOR_USER_CWD_SEP$SYMBOL_SEP $COLOR_RESET"
         local host_root_sep="$COLOR_HOST_ROOT_SEP$SYMBOL_SEP $COLOR_RESET"
         local root_cwd_sep="$COLOR_ROOT_CWD_SEP$SYMBOL_SEP $COLOR_RESET"
-        if [[ $(which realpath 2> /dev/null) ]]; then
-            local realhome=$(realpath ~)
-            if [[ $PWD == $realhome ]]; then
-                local cwd="$COLOR_CWD \w $COLOR_RESET"
-            elif [[ $PWD == $realhome* ]]; then
-                local short_path="$(pwd | sed "s|$realhome|~|")"
-                local cwd="$COLOR_CWD $short_path $COLOR_RESET"
-            fi
+        if [[ $(which realpath 2> /dev/null) && $PWD == $(realpath ~) ]]; then
+            local cwd="$COLOR_CWD \w $COLOR_RESET"
         else
             local cwd="$COLOR_CWD \w $COLOR_RESET"
         fi
