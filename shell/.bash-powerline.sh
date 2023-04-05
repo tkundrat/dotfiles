@@ -106,13 +106,19 @@ __powerline() {
             local git_symbol_sep="$COLOR_GIT_SYMBOL_FAILURE_SEP$SYMBOL_SEP$COLOR_RESET"
         fi
 
-        local host="$COLOR_HOST $OS_SYMBOL $HOSTNAME $COLOR_RESET"
+        local host="$COLOR_HOST $OS_SYMBOL \h $COLOR_RESET"
         local host_user_sep="$COLOR_HOST_USER_SEP$SYMBOL_SEP $COLOR_RESET"
         local user_cwd_sep="$COLOR_USER_CWD_SEP$SYMBOL_SEP $COLOR_RESET"
         local host_root_sep="$COLOR_HOST_ROOT_SEP$SYMBOL_SEP $COLOR_RESET"
         local root_cwd_sep="$COLOR_ROOT_CWD_SEP$SYMBOL_SEP $COLOR_RESET"
-        if [[ $(which realpath 2> /dev/null) && $PWD == $(realpath ~) ]]; then
-            local cwd="$COLOR_CWD \w $COLOR_RESET"
+        if [[ $(which realpath 2> /dev/null) ]]; then
+            local realhome=$(realpath ~)
+            if [[ $PWD == $realhome ]]; then
+                local cwd="$COLOR_CWD \w $COLOR_RESET"
+            elif [[ $PWD == $realhome* ]]; then
+                local short_path="$(pwd | sed "s|$realhome|~|")"
+                local cwd="$COLOR_CWD $short_path $COLOR_RESET"
+            fi
         else
             local cwd="$COLOR_CWD \w $COLOR_RESET"
         fi
