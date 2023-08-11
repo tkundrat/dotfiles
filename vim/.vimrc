@@ -231,7 +231,8 @@ function! ToggleDarkLight()
 endfunction
 
 " Keymappings
-map <C-t> :tabnew .<CR>
+nnoremap <C-t> :tabnew .<CR>
+nnoremap <C-p> :GFiles <CR>
 
 " Custom commands
 command SetDark :call SetDarkTheme()
