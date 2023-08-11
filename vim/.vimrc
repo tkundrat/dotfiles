@@ -78,6 +78,8 @@ call plug#begin('~/.vim/plugged')
     if strlen(system('which ruby')) > 0
         Plug 'tpope/vim-rails'
     endif
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 "color theme
