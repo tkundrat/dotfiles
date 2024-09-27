@@ -1,0 +1,16 @@
+#!/bin/bash
+
+swaynag \
+    -m 'Do you want to reboot?' \
+    -y top \
+    -f 'Cascadia Code PL' \
+    --background 83c09299 \
+    --button-background 83c09299 \
+    --button-border-size 0 \
+    --button-padding 4 \
+    --button-gap 8 \
+    --button-dismiss-gap 0 \
+    --button-margin-right 8 \
+    --border-bottom-size 0 \
+    -s '' \
+    -z ' 󰄬 ' 'systemctl reboot'

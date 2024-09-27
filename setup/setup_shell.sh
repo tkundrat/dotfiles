@@ -12,6 +12,6 @@ if [[ $(ls $HOME/.bash-powerline.sh) ]]; then
 fi
 
 # creating symlink
-REPO_DIR=$(cd .. && pwd)
+REPO_DIR=$(git rev-parse --show-toplevel)
 ln -s $REPO_DIR/shell/.bashrc $HOME/.bashrc
 ln -s $REPO_DIR/shell/.bash-powerline.sh $HOME/.bash-powerline.sh

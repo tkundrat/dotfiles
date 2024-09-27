@@ -14,7 +14,7 @@ if [[ $(which kitty) ]]; then
     fi
     
     # creating symlink
-    REPO_DIR=$(cd .. && pwd)
+    REPO_DIR=$(git rev-parse --show-toplevel)
     ln -s $REPO_DIR/kitty/kitty.conf $KITTY_DIR/kitty.conf
     
     # write light theme to current theme
