@@ -34,9 +34,9 @@
         "custom/keyboard-toggle",
         "network",
         // "pulseaudio",
-        // "memory",
-        // "cpu",
-        // "temperature",
+        "memory",
+        "cpu",
+        "temperature",
         "backlight",
         // "custom/keyboard-layout",
         "battery",
@@ -57,31 +57,21 @@
     "battery": {
         "interval": 1,
         "states": {
-            "warning": 30,
-            "critical": 15
+            "warning": 20,
+            "critical": 10
         },
         // Connected to AC
-        "format": "{capacity}% 󰂄", // Icon: bolt
-        // "format": "⚡ {capacity}%", // Icon: bolt
-        // "format": "C {capacity}%", // Icon: bolt
+        "format": "{capacity}% {icon}󱐋", // Icon: bolt
         // Not connected to AC
         "format-discharging": "{capacity}% {icon}",
-        // "format-discharging": "🔋 {capacity}%",
-        // "format-discharging": "{capacity}%",
-        "format-icons": [
-            "󰁺", // Icon: battery-empty
-            "󰁼", // Icon: battery-quarter
-            "󰁾", // Icon: battery-half
-            "󰂁", // Icon: battery-three-quarters
-            "󰁹"  // Icon: battery-full
-        ],
-        "tooltip": true,
-        "on-click": "~/.config/waybar/conservation-toggle.sh"
+        "format-icons": ["󱃍", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip": true
+        // "on-click": "~/.config/waybar/conservation-toggle.sh"
     },
 
     "backlight": {
       "device": "intel_backligt",
-      "format": "{percent} {icon}",
+      "format": "{percent}% {icon}",
       // "format": "{percent}%",
       // "format-icons": ["🔅", "🔆"]
       "format-icons": ["󰃚", "󰃝", "󰃞", "󰃟", "󰃠"]
@@ -106,8 +96,8 @@
     },
 
     "cpu": {
-        "interval": 30,
-        "format": "🧮 {usage}% ({load})", // Icon: microcip
+        "interval": 5,
+        "format": "{usage}% 󰻠", // Icon: microcip
         "states": {
           "warning": 70,
           "critical": 90
@@ -125,8 +115,8 @@
     },
 
     "memory": {
-        "interval": 30,
-        "format": "💾  {used} GiB", // Icon: memory
+        "interval": 5,
+        "format": "{percentage}% 󰍛", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
@@ -135,10 +125,11 @@
 
     "network": {
         "interval": 5,
-        "format-wifi": "{essid} ", // Icon: wifi
-        "format-ethernet": "{ifname} ", // Icon: ethernet
-        "format-disconnected": "Disconnected ⚠",
+        "format-wifi": "{essid} {icon}", // Icon: wifi
+        "format-ethernet": "{ifname} 󰈀", // Icon: ethernet
+        "format-disconnected": "Disconnected 󰀦",
         "tooltip-format": "{ifname}: {ipaddr}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
         "on-click": "nm-connection-editor"
     },
 
@@ -157,22 +148,7 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": false,
-        "format": "{name}",
-        "format-icons": {
-            "1": "一",
-            "2": "二",
-            "3": "三",
-            "4": "四",
-            "5": "五",
-            "6": "六",
-            "7": "七",
-            "8": "八",
-            "9": "九",
-            "10": "十",
-            // "urgent": "",
-            // "focused": "",
-            "default": ""
-        }
+        "format": "{name}"
     },
 
     "pulseaudio": {
@@ -195,7 +171,7 @@
     "temperature": {
       "critical-threshold": 80,
       "interval": 5,
-      "format": "{icon}  {temperatureC}°C",
+      "format": "{temperatureC}°C {icon}",
       "format-icons": [
           "", // Icon: temperature-empty
           "", // Icon: temperature-quarter
