@@ -238,7 +238,7 @@ window#waybar>box {
 */
 
 #custom-wofi-touch {
-    background-image: url("file:///home/tkundrat/.config/waybar/start_btn.png");
+    background-image: url("start_btn.png");
     /* padding-right: 85px; */
     padding-right: 95px;
     color: rgba(0, 0, 0, 0);
