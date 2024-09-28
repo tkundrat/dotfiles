@@ -58,8 +58,8 @@ output * background /home/tkundrat/Pictures/20230821_132554.jpg fill
 # Example configuration:
 #
 exec_always pkill swayidle; swayidle -w \
-         timeout 600 '~/bin/lock' \
-         timeout 900 'smaymsg "output * power off"' \
+         timeout 600 'pactl list | grep RUNNING || ~/bin/lock' \
+         timeout 900 'pactl list | grep RUNNING || smaymsg "output * power off"' \
          resume 'swaymsg "output * power on"' before-sleep '~/bin/lock' \
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -227,6 +227,10 @@ include /etc/sway/config.d/*
 input * {
     xkb_layout "de"
     xkb_variant "bone"
+}
+input type:touchpad {
+    natural_scroll enabled
+    tap enabled
 }
 
 font pango: Cascadia Code PL 13
