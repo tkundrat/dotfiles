@@ -32,7 +32,8 @@
     ],
     "modules-right": [
         "custom/keyboard-toggle",
-        "network",
+        // "network",
+        "tray",
         // "pulseaudio",
         "memory",
         "cpu",
@@ -44,9 +45,8 @@
         // "custom/power",
         "clock#date",
         "clock#time",
-        "custom/power-menu",
         //"custom/sep",
-        "tray"
+        "custom/power-menu"
     ],
 
 
@@ -64,7 +64,7 @@
         "format": "{capacity}% {icon}󱐋", // Icon: bolt
         // Not connected to AC
         "format-discharging": "{capacity}% {icon}",
-        "format-icons": ["󱃍", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "format-icons": ["󱃍 ", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "tooltip": true
         // "on-click": "~/.config/waybar/conservation-toggle.sh"
     },
@@ -183,7 +183,7 @@
     },
 
     "tray": {
-        "icon-size": 13,
+        "icon-size": 18,
         "spacing": 15
     },
 
