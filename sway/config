@@ -58,9 +58,10 @@ output * background /home/tkundrat/Pictures/20230821_132554.jpg fill
 # Example configuration:
 #
 exec_always pkill swayidle; swayidle -w \
-         timeout 600 'pactl list | grep RUNNING || ~/bin/lock' \
-         timeout 900 'pactl list | grep RUNNING || smaymsg "output * power off"' \
-         resume 'swaymsg "output * power on"' before-sleep '~/bin/lock' \
+         timeout  600 'pactl list | grep RUNNING || ~/bin/lock' \
+         timeout  900 'pactl list | grep RUNNING || smaymsg "output * power off"' \
+         timeout 1200 'pactl list | grep RUNNING || systemctl suspend' \
+         resume 'swaymsg "output * power on"' before-sleep '~/bin/lock'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -224,9 +225,10 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 
 include /etc/sway/config.d/*
-input * {
-    xkb_layout "de"
-    xkb_variant "bone"
+input type:keyboard {
+    xkb_layout de,us
+    xkb_variant bone,intl
+    xkb_options grp:ctrl_space_toggle
 }
 input type:touchpad {
     natural_scroll enabled
@@ -234,7 +236,7 @@ input type:touchpad {
 }
 
 font pango: Cascadia Code PL 13
-for_window [title="."] title_format "%app_id"
+for_window [title="."] title_format "%app_id<i>%class</i>"
 default_border normal 4
 default_floating_border normal 4
 gaps inner 6
@@ -260,6 +262,7 @@ bindgesture swipe:3:left workspace next
 
 bindgesture swipe:4:right focus right
 bindgesture swipe:4:left focus left
+bindgesture swipe:4:up exec $menu
 
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+

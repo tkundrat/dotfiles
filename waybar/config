@@ -205,7 +205,8 @@
 
     "custom/keyboard-toggle": {
         "on-click": "pkill wvkbd-mobintl --signal SIGRTMIN",
-        "format" : " 󰥻 "
+        "interval": 1,
+        "exec" : "echo $(~/bin/curr_kb_layout) '󰥻 '"
     },
 
     "custom/wofi-touch": {
