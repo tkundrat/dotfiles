@@ -34,10 +34,10 @@
         "custom/keyboard-toggle",
         // "network",
         "tray",
-        // "pulseaudio",
         "memory",
         "cpu",
         "temperature",
+        "pulseaudio",
         "backlight",
         // "custom/keyboard-layout",
         "battery",
@@ -153,9 +153,9 @@
 
     "pulseaudio": {
         //"scroll-step": 1,
-        "format": "{volume}%",
-        "format-bluetooth": "{volume}%",
-        "format-muted": "Mute",
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% ",
+        "format-muted": "Mute 󰸈",
         "format-icons": {
             "headphones": "",
             "handsfree": "",
@@ -163,7 +163,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", ""]
+            "default": ["󰕿", "󰖀", "󰕾"]
         },
         "on-click": "pavucontrol"
     },

@@ -13,7 +13,7 @@ swaylock \
     --effect-blur 13x8 \
     --effect-vignette 0.5:0.5 \
     --effect-scale 1 \
-    --grace 1 \
+    --grace 0 \
     --timestr "%H:%M" \
     --datestr "%a %d.%m.%Y" \
     --ring-color 3d484d \
