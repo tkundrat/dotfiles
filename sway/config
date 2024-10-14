@@ -45,7 +45,7 @@ scratchpad_minimize disable
 
 ### Output configuration
 #
-output * background /home/tkundrat/Pictures/20230821_132554.jpg fill
+output * background ~/Pictures/20230821_132554.jpg fill
 #
 # Example configuration:
 #

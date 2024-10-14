@@ -13,6 +13,7 @@ if [[ $(which sway && which waybar) ]]; then
     # creating symlink
     REPO_DIR=$(git rev-parse --show-toplevel)
     mkdir -p $HOME/.config/waybar/
+    mkdir -p $HOME/.config/sway/
     ln -s $REPO_DIR/sway/config $HOME/.config/sway/config
     ln -s $REPO_DIR/waybar/config $HOME/.config/waybar/config
     ln -s $REPO_DIR/waybar/style.css $HOME/.config/waybar/style.css
