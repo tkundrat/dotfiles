@@ -44,8 +44,12 @@ dim_inactive_colors.urgent #900000FF
 scratchpad_minimize disable
 
 ### Output configuration
-#
+# background
 output * background ~/Pictures/20230821_132554.jpg fill
+# laptop screen
+output eDP-1 scale 1.25
+# ultrawide screen
+output "XMI Mi Monitor Unknown" mode 3440x1440@144Hz scale 1.2 adaptive_sync on
 #
 # Example configuration:
 #
@@ -175,7 +179,7 @@ exec_always pkill swayidle; swayidle -w \
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+space floating toggle; [tiling con_id=__focused__] border normal 4; [floating con_id=__focused__] border normal 4
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
@@ -234,6 +238,9 @@ input type:touchpad {
     natural_scroll enabled
     tap enabled
 }
+input type:pointer {
+    natural_scroll enabled
+}
 
 font pango: Cascadia Code PL 13
 for_window [title="."] title_format "%app_id<i>%class</i>"
@@ -254,8 +261,6 @@ client.urgent           #E67E80 #E67E80 #2D353B #E67E80   #E67E80
 client.placeholder      #2D353B #2D353B #859289 #2D353B   #2D353B
 client.background       #2D353B
 
-
-output eDP-1 scale 1.25
 
 bindgesture swipe:3:right workspace prev
 bindgesture swipe:3:left workspace next
