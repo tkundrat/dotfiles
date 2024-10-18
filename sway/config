@@ -45,11 +45,14 @@ scratchpad_minimize disable
 
 ### Output configuration
 # background
-output * background ~/Pictures/20230821_132554.jpg fill
+output * {
+    background ~/Pictures/20230821_132554.jpg fill
+    adaptive_sync on
+}
 # laptop screen
 output eDP-1 scale 1.25
 # ultrawide screen
-output "XMI Mi Monitor Unknown" mode 3440x1440@144Hz scale 1.2 adaptive_sync on
+output "XMI Mi Monitor Unknown" mode 3440x1440@144Hz scale 1.2
 #
 # Example configuration:
 #
@@ -284,7 +287,8 @@ bindgesture swipe:4:up exec $menu
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-bindsym XF86Display exec wdisplays
+# mirror screen to dedicated hdmi port output on laptop with Fn+F7 thinkpad key
+bindsym XF86Display exec (ps auxww | grep wl-mirror | grep -v grep && pkill wl-mirror) || wl-mirror --fullscreen-output 'HDMI-A-1' 'eDP-1'
 
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec (pactl get-sink-mute @DEFAULT_SINK@ | grep no) && pactl set-sink-volume @DEFAULT_SINK@ -5%
