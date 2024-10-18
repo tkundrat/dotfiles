@@ -65,7 +65,7 @@ exec_always pkill swayidle; swayidle -w \
          timeout  600 'pactl list | grep RUNNING || ~/bin/lock' \
          timeout  900 'pactl list | grep RUNNING || smaymsg "output * power off"' \
          timeout 1200 'pactl list | grep RUNNING || systemctl suspend' \
-         resume 'swaymsg "output * power on"' before-sleep '~/bin/lock-nograce'
+         resume 'swaymsg "output * power on"' before-sleep 'playerctl pause; ~/bin/lock-nograce'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -230,8 +230,8 @@ bindsym $mod+r mode "resize"
 
 include /etc/sway/config.d/*
 input type:keyboard {
-    xkb_layout de,us
-    xkb_variant bone,intl
+    xkb_layout us,de
+    xkb_variant intl,bone
     xkb_options grp:ctrl_space_toggle
 }
 input type:touchpad {
@@ -240,6 +240,18 @@ input type:touchpad {
 }
 input type:pointer {
     natural_scroll enabled
+}
+
+# map wacom pen and touchscreen explicitly to internal display,
+# so it works with external displays connected correctly
+input type:tablet_tool {
+    map_to_output 'eDP-1'
+}
+input type:tablet_pad {
+    map_to_output 'eDP-1'
+}
+input type:touch {
+    map_to_output 'eDP-1'
 }
 
 font pango: Cascadia Code PL 13
@@ -272,6 +284,7 @@ bindgesture swipe:4:up exec $menu
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
+bindsym XF86Display exec wdisplays
 
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec (pactl get-sink-mute @DEFAULT_SINK@ | grep no) && pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -288,3 +301,6 @@ exec --no-startup-id swaync
 exec --no-startup-id nextcloud --background
 exec --no-startup-id pasystray
 exec --no-startup-id wvkbd-mobintl -L 160 --hidden
+
+# switch to bone
+exec_always swaymsg input "*" xkb_switch_layout 1

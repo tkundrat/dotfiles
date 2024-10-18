@@ -90,22 +90,24 @@
     animation-direction: alternate;
 }
 
-#battery.warning {
-    color: orange;
-}
-
-#battery.critical {
-    color: red;
-}
-
 #battery.warning.discharging {
+    color: orange;
     animation-name: blink-warning;
     animation-duration: 3s;
 }
 
 #battery.critical.discharging {
+    color: red;
     animation-name: blink-critical;
     animation-duration: 2s;
+}
+
+#battery.discharging {
+    color: white
+}
+
+#battery {
+    color: #22cc22
 }
 
 #clock {
