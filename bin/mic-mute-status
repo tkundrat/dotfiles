@@ -1,0 +1,9 @@
+#!/bin/bash
+
+OUTPUT=`pactl get-source-mute @DEFAULT_SOURCE@ | grep no`
+
+if [[ $OUTPUT ]]; then
+    echo "󰍬"
+else
+    echo "󰍭"
+fi

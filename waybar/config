@@ -38,6 +38,7 @@
         "cpu",
         "temperature",
         "pulseaudio",
+        "custom/mic-status",
         "backlight",
         // "custom/keyboard-layout",
         "battery",
@@ -217,5 +218,11 @@
     "custom/power-menu": {
         "on-click": "~/bin/power-menu",
         "format": " 󰐦 "
+    },
+
+    "custom/mic-status": {
+        "interval": 1,
+        "on-click": "~/bin/mic-toggle",
+        "exec": "~/bin/mic-mute-status"
     }
 }
