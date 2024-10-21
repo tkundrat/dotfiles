@@ -53,6 +53,11 @@ output * {
 output eDP-1 scale 1.25
 # ultrawide screen
 output "XMI Mi Monitor Unknown" mode 3440x1440@144Hz scale 1.2
+
+#disable screen when closing lid
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
 #
 # Example configuration:
 #
@@ -94,6 +99,8 @@ exec_always pkill swayidle; swayidle -w \
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    # TODO: open floating kitty window with fixed size centered
+    # bindsym $mod+Shift+Return exec ($term &; swaymsg floating enable && swaymsg move position center resize set 50ppt 50ppt && swaymsg [tiling con_id=__focused__] border normal 4; [floating con_id=__focused__] border normal 4)
 
     # Kill focused window
     bindsym $mod+Shift+q kill
