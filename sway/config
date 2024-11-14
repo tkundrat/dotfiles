@@ -69,7 +69,7 @@ bindswitch --reload --locked lid:off output $laptop enable
 #
 # Example configuration:
 #
-exec_always pkill swayidle; swayidle -w \
+exec swayidle -w \
          timeout  600 'pactl list | grep RUNNING || ~/bin/lock' \
          timeout  900 'pactl list | grep RUNNING || smaymsg "output * power off"' \
          timeout 1200 'pactl list | grep RUNNING || systemctl suspend' \
@@ -318,8 +318,9 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec --no-startup-id nm-applet
 exec --no-startup-id swaync
 exec --no-startup-id nextcloud --background
-exec --no-startup-id pasystray
+#exec --no-startup-id pasystray
 exec --no-startup-id wvkbd-mobintl -L 160 --hidden
+exec --no-startup-id blueman-applet
 
 # switch to bone
 exec_always swaymsg input "*" xkb_switch_layout 1

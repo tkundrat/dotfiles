@@ -39,7 +39,8 @@
         "temperature",
         "pulseaudio",
         "custom/mic-status",
-        "backlight",
+        "custom/screenshot",
+        // "backlight",
         // "custom/keyboard-layout",
         "battery",
         // "custom/conservation",
@@ -224,5 +225,10 @@
         "interval": 1,
         "on-click": "~/bin/mic-toggle",
         "exec": "~/bin/mic-mute-status"
+    },
+
+    "custom/screenshot": {
+        "format": "󰹑",
+        "on-click": "~/bin/screenshot -s region"
     }
 }
