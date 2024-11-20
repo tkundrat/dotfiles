@@ -304,7 +304,7 @@ bindsym --locked XF86AudioRaiseVolume exec ((pactl get-sink-mute @DEFAULT_SINK@ 
 bindsym --locked XF86AudioMicMute exec ~/bin/mic-toggle
 
 bindsym $mod+Escape exec ~/bin/lock-nograce
-bindsym $mod+Shift+Escape exec systemctl suspend
+bindsym --locked $mod+Shift+Escape exec systemctl suspend
 bindsym Print exec ~/bin/screenshot -s region
 
 exec eval $(gnome-keyring-daemon --start)
