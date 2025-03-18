@@ -7,8 +7,11 @@ fi
 
 source ~/.bash-powerline.sh
 
-# trap cmds and set them as title
-trap '__bash_cmd="|>$BASH_COMMAND"; if [[ $__bash_cmd == "|>ps1" ]]; then __bash_cmd=""; fi; echo -ne "\033]0;$USER@$HOSTNAME$__bash_cmd\007"; unset __bash_cmd' DEBUG
+# if interactive
+if [[ $- == *i* ]]; then
+    # trap cmds and set them as title
+    trap '__bash_cmd="|>$BASH_COMMAND"; if [[ $__bash_cmd == "|>ps1" ]]; then __bash_cmd=""; fi; echo -ne "\033]0;$USER@$HOSTNAME$__bash_cmd\007"; unset __bash_cmd' DEBUG
+fi
 
 # aliases
 alias ll="ls -laF"
