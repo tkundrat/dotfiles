@@ -1,0 +1,10 @@
+#!/bin/bash
+
+location='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
+val=$(cat $location)
+
+if [ "X$val" == "X1" ]; then
+  echo 0 > $location
+else
+  echo 1 > $location
+fi

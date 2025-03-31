@@ -7,3 +7,4 @@
 ./setup_tmux.sh
 ./setup_vim.sh
 ./setup_sway.sh
+./setup_conservation_toggle.sh

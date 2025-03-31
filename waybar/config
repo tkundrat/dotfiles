@@ -43,7 +43,7 @@
         // "backlight",
         // "custom/keyboard-layout",
         "battery",
-        // "custom/conservation",
+        "custom/conservation",
         // "custom/power",
         "clock#date",
         "clock#time",
@@ -167,10 +167,11 @@
             "car": "",
             "default": ["󰕿", "󰖀", "󰕾"]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pwvucontrol"
     },
 
     "temperature": {
+      "thermal-zone": 10,
       "critical-threshold": 80,
       "interval": 5,
       "format": "{temperatureC}°C {icon}",
@@ -190,9 +191,9 @@
     },
 
     "custom/conservation": {
-        "exec": "~/.config/waybar/conservation.sh",
-        "interval": 10,
-        "on-click": "~/.config/waybar/conservation-toggle.sh"
+        "exec": "~/bin/conservation",
+        "interval": 1,
+        "on-click": "sudo /usr/local/bin/conservation-toggle"
     },
 
     "custom/power": {

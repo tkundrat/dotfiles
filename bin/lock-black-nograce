@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# disabled options
+#    --no-unlock-indicator \
+#    --image ~/Pictures/winxp.png \
+
+swaylock \
+    -c 000000 \
+    --daemonize \
+    --clock \
+    --indicator-idle-visible \
+    --grace 0 \
+    --timestr "%H:%M" \
+    --datestr "%a %d.%m.%Y" \
+    --ring-color 3d484d \
+    --key-hl-color a7c080 \
+    --line-color 3d484d \
+    --inside-color 4f585e \
+    --separator-color a7c080

@@ -29,8 +29,11 @@ export QT_QPA_PLATFORM=wayland
 # aliases
 alias ll="ls -laFh --color=auto"
 alias g=git
-alias pns='docker exec -ti piconut_container bash'
-alias pnsu='docker exec -tiu root piconut_container bash'
 
 # editor
 export EDITOR='/usr/bin/hx'
+
+# local bashrc
+if [ -f $USER/.bashrc.local ]; then
+    source $USER/.bashrc.local
+fi

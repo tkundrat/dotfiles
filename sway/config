@@ -50,9 +50,15 @@ output * {
     adaptive_sync on
 }
 # laptop screen
-output eDP-1 scale 1.25
+output eDP-1 {
+    scale 1.75
+    render_bit_depth 10
+}
 # ultrawide screen
-output "XMI Mi Monitor Unknown" mode 3440x1440@144Hz scale 1.2
+output "Xiaomi Corporation Mi Monitor Unknown" {
+    mode 3440x1440@120Hz
+    scale 1.2
+}
 
 #disable screen when closing lid
 set $laptop eDP-1
@@ -73,7 +79,7 @@ exec swayidle -w \
          timeout  600 'pactl list | grep RUNNING || ~/bin/lock' \
          timeout  900 'pactl list | grep RUNNING || smaymsg "output * power off"' \
          timeout 1200 'pactl list | grep RUNNING || systemctl suspend' \
-         resume 'swaymsg "output * power on"' before-sleep 'playerctl pause; ~/bin/lock-nograce'
+         resume 'swaymsg "output * power on"' before-sleep 'playerctl pause; ~/bin/lock-black-nograce'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -283,6 +289,8 @@ client.urgent           #E67E80 #E67E80 #2D353B #E67E80   #E67E80
 client.placeholder      #2D353B #2D353B #859289 #2D353B   #2D353B
 client.background       #2D353B
 
+# floating windows
+for_window [app_id="org.gnome.Epiphany"] floating enable, border pixel 4, resize set 65 ppt 80 ppt, focus, move absolute position centered, move scratchpad
 
 bindgesture swipe:3:right workspace prev
 bindgesture swipe:3:left workspace next
@@ -303,6 +311,11 @@ bindsym --locked XF86AudioRaiseVolume exec ((pactl get-sink-mute @DEFAULT_SINK@ 
 
 bindsym --locked XF86AudioMicMute exec ~/bin/mic-toggle
 
+bindsym $mod+F12 exec ~/bin/chatgpt
+bindsym XF86Assistant exec ~/bin/chatgpt
+
+bindsym XF86Calculator exec gnome-calculator
+
 bindsym $mod+Escape exec ~/bin/lock-nograce
 bindsym --locked $mod+Shift+Escape exec systemctl suspend
 bindsym Print exec ~/bin/screenshot -s region
@@ -322,6 +335,7 @@ exec --no-startup-id nextcloud --background
 #exec --no-startup-id pasystray
 exec --no-startup-id wvkbd-mobintl -L 160 --hidden
 exec --no-startup-id blueman-applet
+exec --no-startup-id ~/bin/battery-saver-daemon
 
 # switch to bone
 exec_always swaymsg input "*" xkb_switch_layout 1
