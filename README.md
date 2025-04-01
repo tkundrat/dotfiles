@@ -5,6 +5,9 @@ tkundrat's dotfiles
 Run wanted `.sh` files (or `setup_all.sh` for all) from anywhere inside the repository.
 Any existing config files, that would be overwritten, are copied to `$HOME/old-dotfiles`.
 
+## WM and Lockscreen
+I am using `SwayFX` instead of `sway` and `swaylock-effects` instead of `swaylock`. As a status bar I am using `waybar`. Keep that in mind when using these configs and scripts.
+
 ## darkmode
 I added rudimentary dark mode support for my vim config. Darkmode will be used, if the `~/.darkmode` file is present.
 I use a GNOME extension, which sets a UI-wide dark mode and runs the scripts mentioned below. Darkmode will not be (de)activated, while vim is running. The status of the file being there is checked at vim startup.
