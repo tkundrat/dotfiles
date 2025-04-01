@@ -302,8 +302,8 @@ bindgesture swipe:4:up exec $menu
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-# mirror screen to dedicated hdmi port output on laptop with Fn+F7 thinkpad key
-bindsym XF86Display exec (ps auxww | grep wl-mirror | grep -v grep && pkill wl-mirror) || wl-mirror --fullscreen-output 'HDMI-A-1' 'eDP-1'
+# mirror screen to dedicated hdmi port output on laptop
+bindsym $mod+p exec (ps auxww | grep wl-mirror | grep -v grep && pkill wl-mirror) || wl-mirror --fullscreen-output 'HDMI-A-1' 'eDP-1'
 
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec (pactl get-sink-mute @DEFAULT_SINK@ | grep no) && pactl set-sink-volume @DEFAULT_SINK@ -5%
