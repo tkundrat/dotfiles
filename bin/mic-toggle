@@ -1,14 +1,3 @@
 #!/bin/bash
 
 pactl set-source-mute @DEFAULT_SOURCE@ toggle
-
-# for the led to work we need to chmod a+w $LED_PATH, so the user can change led status
-
-LED_PATH='/sys/bus/platform/drivers/thinkpad_acpi/thinkpad_acpi/leds/platform::micmute/brightness'
-OUTPUT=`pactl get-source-mute @DEFAULT_SOURCE@ | grep yes`
-
-if [[ $OUTPUT ]]; then
-    echo 1 > $LED_PATH
-else
-    echo 0 > $LED_PATH
-fi

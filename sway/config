@@ -76,9 +76,9 @@ bindswitch --reload --locked lid:off output $laptop enable
 # Example configuration:
 #
 exec swayidle -w \
-         timeout  600 'pactl list | grep RUNNING || ~/bin/lock' \
-         timeout  900 'pactl list | grep RUNNING || smaymsg "output * power off"' \
-         timeout 1200 'pactl list | grep RUNNING || systemctl suspend' \
+         timeout  600 'playerctl status | grep Playing || ~/bin/lock' \
+         timeout  900 'playerctl status | grep Playing || smaymsg "output * power off"' \
+         timeout 1200 'playerctl status | grep Playing || systemctl suspend' \
          resume 'swaymsg "output * power on"' before-sleep 'playerctl pause; ~/bin/lock-black-nograce'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
