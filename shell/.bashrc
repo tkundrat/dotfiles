@@ -29,11 +29,12 @@ export QT_QPA_PLATFORM=wayland
 # aliases
 alias ll="ls -laFh --color=auto"
 alias g=git
+alias gcd="cd $(git rev-parse --show-toplevel)"
 
 # editor
 export EDITOR='/usr/bin/hx'
 
 # local bashrc
-if [ -f $USER/.bashrc.local ]; then
-    source $USER/.bashrc.local
+if [ -f $HOME/.bashrc.local ]; then
+    source $HOME/.bashrc.local
 fi

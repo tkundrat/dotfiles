@@ -52,7 +52,8 @@ output * {
 # laptop screen
 output eDP-1 {
     scale 1.75
-    render_bit_depth 10
+    render_bit_depth 8
+    # bit depth 10 does not work with screen sharing
 }
 # ultrawide screen
 output "Xiaomi Corporation Mi Monitor Unknown" {
@@ -291,6 +292,7 @@ client.background       #2D353B
 
 # floating windows
 for_window [app_id="org.gnome.Epiphany"] floating enable, border pixel 4, resize set 65 ppt 80 ppt, focus, move absolute position centered, move scratchpad
+for_window [class="Gtkwave"] floating enable, border pixel 4
 
 bindgesture swipe:3:right workspace prev
 bindgesture swipe:3:left workspace next
@@ -299,8 +301,8 @@ bindgesture swipe:4:right focus right
 bindgesture swipe:4:left focus left
 bindgesture swipe:4:up exec $menu
 
-bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl -e set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl -e set 5%+
 
 # mirror screen to dedicated hdmi port output on laptop
 bindsym $mod+p exec (ps auxww | grep wl-mirror | grep -v grep && pkill wl-mirror) || wl-mirror --fullscreen-output 'HDMI-A-1' 'eDP-1'
@@ -336,6 +338,7 @@ exec --no-startup-id nextcloud --background
 exec --no-startup-id wvkbd-mobintl -L 160 --hidden
 exec --no-startup-id blueman-applet
 exec --no-startup-id ~/bin/battery-saver-daemon
+exec --no-startup-id ~/bin/wacom-battery-daemon
 
 # switch to bone
 exec_always swaymsg input "*" xkb_switch_layout 1
