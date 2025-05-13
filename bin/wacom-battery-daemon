@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while true; do
+  battery=`upower -e | grep wacom_battery`
+  if [[ -n "$battery" ]]; then
+    pct=`upower -i $battery | grep percentage | perl -pe 's/.*?([[:digit:]]+).*/\1/'`
+    missing=`upower -i $battery | grep missing`
+    if [[ $pct -le 20 && -z "$missing" ]]; then
+      notify-send -i battery-empty "Stylus Battery" "Change your stylus battery soon."
+    fi
+  fi
+  sleep 1m
+done

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+(ps auxww | grep -i epiphany | grep -v grep) || ((epiphany https://chat.openai.com/ &) && sleep 3s)
+(ls /ram/.chatgpt-focus && swaymsg "[app_id=\"org.gnome.Epiphany\"]" move scratchpad && rm /ram/.chatgpt-focus) || (swaymsg "[app_id=\"org.gnome.Epiphany\"]" focus && touch /ram/.chatgpt-focus)
