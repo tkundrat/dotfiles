@@ -8,3 +8,4 @@
 ./setup_vim.sh
 ./setup_sway.sh
 ./setup_conservation_toggle.sh
+./setup_helix.sh
