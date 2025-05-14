@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ $(ps auxww | grep swaync | grep -vE "grep|swaync-status|swaync-toggle") ]]; then
+	echo "󰂞"
+else
+	echo "󰂛"
+fi

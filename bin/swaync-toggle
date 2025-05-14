@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $(ps auxww | grep swaync | grep -vE "grep|swaync-status|swaync-toggle") ]]; then
+	pkill swaync
+	echo "pkill swaync" >> /tmp/test.log
+else
+	swaymsg exec swaync
+	echo "swaymsg exec swaync" >> /tmp/test.log
+fi
+
