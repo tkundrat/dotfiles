@@ -29,7 +29,7 @@ export QT_QPA_PLATFORM=wayland
 # aliases
 alias ll="ls -laFh --color=auto"
 alias g=git
-alias gcd="cd $(git rev-parse --show-toplevel)"
+alias gcd="cd \`git rev-parse --show-toplevel\`"
 
 # editor
 export EDITOR='/usr/bin/hx'
