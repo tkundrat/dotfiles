@@ -19,7 +19,7 @@ export PATH="${HOME}/bin:${PATH}"
 # edit button layout based on wm
 if [[ $GDMSESSION -eq 'sway' ]]; then
     gsettings set org.gnome.desktop.wm.preferences button-layout ''
-else
+elif [[ -n "$GDMSESSION" ]]; then
     gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:icon'
 fi
 

@@ -1,0 +1,18 @@
+
+[user]
+	name = Tristan Kundrat
+	email = tristan.kundrat@gmail.com
+[color]
+	ui = auto
+[alias]
+	co = checkout
+	st = status
+	b = branch
+	cm = commit
+	f = fetch
+	fod = fetch origin/develop
+	p = pull
+	l = log
+	sh = show
+	d = diff
+	dd = diff origin/develop

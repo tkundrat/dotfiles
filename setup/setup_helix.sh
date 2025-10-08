@@ -10,6 +10,7 @@ if [[ $(which helix || which hx) ]]; then
     
     # creating symlink
     REPO_DIR=$(git rev-parse --show-toplevel)
+    mkdir -p $HOME/.config
     ln -s $REPO_DIR/helix $HOME/.config/helix
     
 else
