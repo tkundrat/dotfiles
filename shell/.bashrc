@@ -38,3 +38,8 @@ export EDITOR='/usr/bin/hx'
 if [ -f $HOME/.bashrc.local ]; then
     source $HOME/.bashrc.local
 fi
+
+# cargo bin
+if [ -d $HOME/.cargo ]; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
