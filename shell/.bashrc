@@ -27,9 +27,14 @@ fi
 export QT_QPA_PLATFORM=wayland
 
 # aliases
-alias ll="ls -laFh --color=auto"
+if [ $(which eza) ]; then
+    alias ll="eza --icons -laaHg --git --smart-group"
+else
+    alias ll="ls -laFh --color=auto"
+fi
 alias g=git
 alias gcd="cd \`git rev-parse --show-toplevel\`"
+alias c=cargo
 
 # editor
 export EDITOR='/usr/bin/hx'
