@@ -39,7 +39,6 @@
         "temperature",
         "pulseaudio",
         "custom/mic-status",
-        "custom/swaync-status",
         "custom/screenshot",
         // "backlight",
         // "custom/keyboard-layout",
@@ -232,11 +231,5 @@
     "custom/screenshot": {
         "format": "󰹑",
         "on-click": "~/bin/screenshot -s region"
-    },
-
-    "custom/swaync-status": {
-        "interval": 1,
-        "on-click": "~/bin/swaync-toggle",
-        "exec": "~/bin/swaync-status"
     }
 }
