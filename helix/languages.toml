@@ -24,3 +24,14 @@ args = [
 [[grammar]]
 name = "bibtex"
 source = { git = "https://github.com/latex-lsp/tree-sitter-bibtex", rev = "ccfd77db0ed799b6c22c214fe9d2937f47bc8b34" }
+
+[[language]]
+name = "typst"
+formatter.command = "typstyle"
+auto-format = true
+
+[language-server.tinymist]
+command = "tinymist"
+config.exportPdf = "onSave"
+config.preview.background.enabled = true
+config.preview.background.args = ["--data-plane-host=127.0.0.1:0", "--invert-colors=never", "--open"]

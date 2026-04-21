@@ -47,4 +47,7 @@ fi
 # cargo bin
 if [ -d $HOME/.cargo ]; then
     export PATH="$PATH:$HOME/.cargo/bin"
+
+    . "$HOME/.cargo/env"
+    . "$HOME/.local/bin/env"
 fi
