@@ -7,7 +7,7 @@ endif
 
 " general settings
 set laststatus=2 "always show status line
-set colorcolumn=80 "eighty-collumn-line
+set colorcolumn=100
 set number
 set relativenumber
 set cursorline
@@ -232,9 +232,14 @@ endfunction
 
 " Keymappings
 nnoremap <C-t> :tabnew .<CR>
-nnoremap <C-p> :GFiles <CR>
+nnoremap <C-p> :GFiles<CR>
+nnoremap <C-q> :vsplit<CR>:q<CR>
 
 " Custom commands
 command SetDark :call SetDarkTheme()
 command SetLight :call SetLightTheme()
 command ToggleDark :call ToggleDarkLight()
+
+" File specific actions
+autocmd BufRead *.README :set spell textwidth=72 colorcolumn=72
+autocmd BufRead *COMMIT_EDITMSG :set textwidth=72 colorcolumn=72
