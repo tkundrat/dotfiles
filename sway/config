@@ -54,7 +54,15 @@ output eDP-1 {
 # ultrawide screen
 output "Xiaomi Corporation Mi Monitor Unknown" {
     mode 3440x1440@120Hz
-    scale 1.2
+    scale 1.1
+}
+output "LG Electronics LG ULTRAWIDE 412NTVS68111" {
+    mode 3440x1440@60Hz
+    scale 1.1
+}
+output "LG Electronics LG ULTRAWIDE 408NTTQ0F705" {
+    mode 3440x1440@60Hz
+    scale 1.1
 }
 
 #disable screen when closing lid
@@ -258,7 +266,7 @@ input type:touchpad {
     tap enabled
 }
 input type:pointer {
-    natural_scroll enabled
+    natural_scroll disabled
 }
 
 # map wacom pen and touchscreen explicitly to internal display,
@@ -274,7 +282,6 @@ input type:touch {
 }
 
 font pango: Cascadia Code PL 13
-for_window [title="."] title_format "%app_id<i>%class</i>"
 default_border normal 4
 default_floating_border normal 4
 gaps inner 6
@@ -292,9 +299,18 @@ client.urgent           #E67E80 #E67E80 #2D353B #E67E80   #E67E80
 client.placeholder      #2D353B #2D353B #859289 #2D353B   #2D353B
 client.background       #2D353B
 
-# floating windows
-for_window [app_id="org.gnome.Epiphany"] floating enable, border pixel 4, resize set 65 ppt 80 ppt, focus, move absolute position centered, move scratchpad
-for_window [class="Gtkwave"] floating enable, border pixel 4
+for_window {
+    [title="."] title_format "%app_id<i>%class</i>"
+    [app_id="org.gnome.Epiphany"] floating enable, border pixel 4, resize set 65 ppt 80 ppt, focus, move absolute position centered, move scratchpad
+    [class="Gtkwave"] floating enable, border pixel 4
+    [app_id="gtkwave"] floating enable, border pixel 4
+    [title="Nextcloud"] floating enable, border pixel 4, resize set 16 ppt 60 ppt, move position cursor, move down 48 px
+    [title="Nextcloud Settings"] floating disable, border normal 4
+    [window_role="pop-up"] floating enable
+    [window_role="bubble"] floating enable
+    [window_role="dialog"] floating enable
+    [window_type="dialog"] floating enable
+}
 
 bindgesture swipe:3:right workspace prev
 bindgesture swipe:3:left workspace next
