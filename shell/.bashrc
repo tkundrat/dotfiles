@@ -35,6 +35,7 @@ fi
 alias g=git
 alias gcd="cd \`git rev-parse --show-toplevel\`"
 alias c=cargo
+alias z=zellij
 
 # editor
 export EDITOR='/usr/bin/hx'
