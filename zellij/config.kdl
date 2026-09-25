@@ -573,3 +573,10 @@ mouse_hover_effects false
 // Note: This only applies to web clients at the moment.
 // client_async_worker_tasks 4
 
+
+// The style of the pane frames when pane_frames is enabled.
+// Possible values:
+// - "titles" (default) - a single title line above each pane
+// - "full" - a full border around each pane (the pre-0.45.0 look)
+// - "none" - no frames at all (identical to pane_frames false)
+pane_frame_style "full"
