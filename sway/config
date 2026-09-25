@@ -64,6 +64,14 @@ output "LG Electronics LG ULTRAWIDE 408NTTQ0F705" {
     mode 3440x1440@60Hz
     scale 1.1
 }
+output "LG Electronics LG HDR WQHD 0x000943B9" {
+    mode 3440x1440@60Hz
+    scale 1.1
+}
+output "LG Electronics LG HDR WQHD 0x00098035" {
+    mode 3440x1440@60Hz
+    scale 1.1
+}
 
 #disable screen when closing lid
 set $laptop eDP-1
