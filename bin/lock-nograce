@@ -10,7 +10,7 @@ swaylock \
     --clock \
     --indicator-idle-visible \
     --fade-in 0.1 \
-    --effect-blur 13x8 \
+    --effect-blur 32x10 \
     --effect-vignette 0.5:0.5 \
     --effect-scale 1 \
     --grace 0 \
